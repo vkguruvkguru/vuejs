@@ -1,9 +1,9 @@
 <template>
   <div class="static-class-name rfp-mctb">
-    <div v-for="item in datas">{{item.title}}
+    <div v-for="(item,index) in datas">{{item.title}}
       <button @click="viewData(item)">view</button>
-      <button @click="editData">Edit</button>
-      <button @click="deleteData(item.id)">Delete</button>
+      <button @click="editData(item)">Edit</button>
+      <button @click="deleteData(index)">Delete</button>
     </div>
     <button @click="getdatas">Get</button>
     </div>
@@ -29,21 +29,38 @@ export default {
   methods: {
     getdatas() {
       fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(json => this.datas = json)
+      .then(response =>  response.json() )
+      .then(json =>  this.datas = json )
     },
-    viewData(lists) {
-      console.log(lists);
-      window.eventBus.$emit('listdatas', JSON.stringify(lists));
+    viewData(lists) {      
+      window.eventBus.$emit('listdatas', lists);
     },
     deleteData(ids) {
       fetch('https://jsonplaceholder.typicode.com/posts/'+ ids, {
         method: 'DELETE'
-      })
-    }
+      });
+	  this.datas.splice(ids,1);
+	  window.eventBus.$emit('deletelistdatas', '');
+    },
+	editData(lists){		
+      window.eventBus.$emit('editlistdatas', lists);
+	}
+  },
+  computed: {
+	test(){
+		console.log('plp');
+	}
   },
   created() {
     this.getdatas();
+  },
+  updated() {
+	window.eventBus.$on('updatelistdatas', (val) => {	
+	console.log('test');
+	let Index = this.datas.map((x) => { return x.id; }).indexOf(val.id);	
+	//let index = this.datas.findIndex(x => x.id === val.id);
+	(Index != -1) ? this.datas[Index].title = val.title:'';			
+    });
   }
 };
 

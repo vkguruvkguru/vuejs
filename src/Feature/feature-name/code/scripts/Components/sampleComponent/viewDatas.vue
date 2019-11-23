@@ -1,6 +1,10 @@
 <template>
-  <div class="static-class-name rfp-mctb">
-    {{ datas }}
+  <div class="static-class-name rfp-mctb">    
+	<ul>
+	<li v-for="datain in datas">
+		{{datain}}
+	</li>	
+	</ul>
   </div>
 </template>
 <script>
@@ -14,6 +18,11 @@ export default {
   created() {
     window.eventBus.$on('listdatas', (val) => {
       this.datas = val
+    });
+  },
+  updated() {
+	window.eventBus.$on('deletelistdatas', () => {	
+      this.datas = '';
     });
   }
 };
