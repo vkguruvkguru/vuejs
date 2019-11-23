@@ -16,6 +16,14 @@ import image from './Components/image.vue';
 import list from './Components/list.vue';
 import pagination from './Components/pagination.vue';
 
+
+import facebookHome from './Components/facebook/home.vue';
+import facebookSidenav from './Components/facebook/sidenav.vue';
+import facebookSearchblog from './Components/facebook/searchblog.vue';
+import facebookRecentpost from './Components/facebook/recentpost.vue';
+import facebookSubmitcmd from './Components/facebook/submitcmd.vue';
+import facebookViewcmd from './Components/facebook/viewcmd.vue';
+
 Vue.component(sampleComponent.name, sampleComponent);
 Vue.component(viewDataComponent.componentName, viewDataComponent);
 Vue.component(editDataComponent.componentName, editDataComponent);
@@ -29,6 +37,13 @@ Vue.component(groupButton.name, groupButton);
 Vue.component('custom-image', image);
 Vue.component('custom-list', list);
 Vue.component('custom-pagination', pagination);
+
+Vue.component(facebookHome.name, facebookHome);
+Vue.component(facebookSidenav.name, facebookSidenav);
+Vue.component(facebookSearchblog.name, facebookSearchblog);
+Vue.component(facebookRecentpost.name, facebookRecentpost);
+Vue.component(facebookSubmitcmd.name, facebookSubmitcmd);
+Vue.component(facebookViewcmd.name, facebookViewcmd);
 
 window.eventBus = new Vue();
 
