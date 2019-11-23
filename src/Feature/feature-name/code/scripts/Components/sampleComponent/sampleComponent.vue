@@ -57,8 +57,7 @@ export default {
   updated() {
 	window.eventBus.$on('updatelistdatas', (val) => {	
 	console.log('test');
-	let Index = this.datas.map((x) => { return x.id; }).indexOf(val.id);	
-	//let index = this.datas.findIndex(x => x.id === val.id);
+	let Index = this.datas.map((x) => { return x.id; }).indexOf(val.id);		
 	(Index != -1) ? this.datas[Index].title = val.title:'';			
     });
   }
