@@ -1,12 +1,10 @@
 <template>
   <div class="container-fluid">
-	<div class="row content">
-	{{typeof viewpostData}}
+	<div class="row content">	
 		<facebook-sidenav></facebook-sidenav>
 		<template v-if="viewpostData">
-		<facebook-recentpost :recent-data="viewpostData"></facebook-recentpost>
-		</template>
-		{{reversedMessage}}
+		<facebook-recentpost :recent-data="viewpostData" :cmd-data="cmdData"></facebook-recentpost>
+		</template>		
 	</div>
   </div>
 </template>
@@ -22,7 +20,8 @@ export default {
   data() {
     return {
       viewpostData: [],
-	  userDataDetail:[]
+	  userDataDetail:[],
+	  cmdData:[]
     };
   },
   methods: {
@@ -34,17 +33,20 @@ export default {
 	userData() {
       fetch('https://jsonplaceholder.typicode.com/users')
       .then(response =>  response.json() )
-      .then(json =>  this.userDataDetail = json )
-	  
-	  
-	  
+      .then(json =>  this.userDataDetail = json )	  
     },
-  }
+	commentData() {
+      fetch('https://jsonplaceholder.typicode.com/comments')
+      .then(response =>  response.json() )
+      .then(json =>  this.cmdData = json )	  
+    },
+  },
   created() {
     this.viewPost();
-	this.userData();
+	this.userData();	
   },
   mounted(){
+	this.commentData();
 	if(this.userDataDetail){
 	  Object.keys(this.userDataDetail).forEach(function(key) {
 

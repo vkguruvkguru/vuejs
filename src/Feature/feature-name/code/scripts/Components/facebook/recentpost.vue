@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-9">      
+  <div class="col-sm-9">  
 	  <template v-if="recentDataValue" v-for="(recentDataValue,index) in recentData">
 	  <h4><small>RECENT POSTS</small></h4>
       <hr>
@@ -11,18 +11,22 @@
       <hr>		
 	  <facebook-submitcmd></facebook-submitcmd>
       <br><br>
-      <facebook-viewcmd></facebook-viewcmd>
+      <facebook-viewcmd :cmd-data="cmdData"></facebook-viewcmd>
       
     </div>
 </template>
 <script>
 export default {
-  name: 'facebookRecentpost',
+  name: 'facebookRecentpost',  
   props:{
 	recentData: {
       type: Array,
       required: false
-    }
+    },
+	cmdData:{
+	  type: Array,
+	  required: false
+	}
   }
 };
 
