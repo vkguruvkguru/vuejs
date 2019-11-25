@@ -1,7 +1,7 @@
 <template>
   <div>	  
       <p><span class="badge">2</span> Comments:</p><br>     
-      <div class="row" v-if="cmdData" v-for="(cmdDataValue,index) in cmdData">
+      <div class="row" v-if="cmdData" v-for="(cmdDataValue,index) in cmdLastData">
         <div class="col-sm-2 text-center">
           <img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">
         </div>
@@ -21,6 +21,16 @@ export default {
 		  type: Array,
 		  required: false
 	  },  
+  },
+  computed: {
+	cmdLastData(){
+		let cmdLastData = '';
+			if (this.cmdData === null || this.cmdData === undefined) {
+				return false;
+			}		
+		cmdLastData = this.cmdData.reverse().slice(0,3);
+		return cmdLastData;
+	}
   }
 };
 </script>

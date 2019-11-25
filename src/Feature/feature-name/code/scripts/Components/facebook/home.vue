@@ -3,7 +3,7 @@
 	<div class="row content">	
 		<facebook-sidenav></facebook-sidenav>
 		<template v-if="viewpostData">
-		<facebook-recentpost :recent-data="viewpostData" :cmd-data="cmdData"></facebook-recentpost>
+		<facebook-recentpost :recent-data="viewpostData" :user-data="userDataDetail":cmd-data="cmdData"></facebook-recentpost>
 		</template>		
 	</div>
   </div>
@@ -46,14 +46,7 @@ export default {
 	this.userData();	
   },
   mounted(){
-	this.commentData();
-	if(this.userDataDetail){
-	  Object.keys(this.userDataDetail).forEach(function(key) {
-
-		console.log(key, this.userDataDetail[key]);
-
-	  });
-	  }
+	this.commentData();	
   }
 };
 
