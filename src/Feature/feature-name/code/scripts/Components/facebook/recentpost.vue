@@ -4,14 +4,14 @@
 	  <h4><small>RECENT POSTS</small></h4>
       <hr>
       <h2>{{recentDataValue.title}}</h2>
-      <h5><span class="glyphicon glyphicon-time"></span> <template v-for="userDataValue in userData" v-if="userDataValue.id == recentDataValue.userId">Post by {{userDataValue.username}},</template> Sep 27, 2015.</h5>
+      <h5><span class="glyphicon glyphicon-time"></span> <template v-for="userDataValue in userData" v-if="userDataValue.id == recentDataValue.userId">Post by {{userDataValue.name}},</template> Sep 27, 2015.</h5>
       <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
       <p>{{recentDataValue.body}}</p>
       </template>
       <hr>		
 	  <facebook-submitcmd></facebook-submitcmd>
       <br><br>
-      <facebook-viewcmd :cmd-data="cmdData"></facebook-viewcmd>
+      <facebook-viewcmd :cmd-data="cmdData" :user-data="userData"></facebook-viewcmd>
       
     </div>
 </template>
