@@ -14,6 +14,9 @@
  </div>
 </template>
 <script>
+const clickHandler = function(clickCount) {
+  console.log(`Oh, that's nice. It's gotten ${clickCount} clicks! :)`)
+}
 export default {
   name: 'facebookViewcmd',
   data(){
@@ -36,8 +39,8 @@ export default {
 		let cmdLastData = '';
 			if (this.cmdData === null || this.cmdData === undefined) {
 				return false;
-			}		
-		cmdLastData = this.cmdData.slice(0,3);
+			}
+		cmdLastData = this.cmdData.reverse().slice(0,3);
 		return cmdLastData;
 	}
   },
@@ -46,10 +49,18 @@ export default {
 	fetch('https://jsonplaceholder.typicode.com/photos')
       .then(response =>  response.json() )
       .then(json =>  this.viewImgData = json)
+	},
+	clickHandler(obj){				
+		this.cmdData.reverse().push(obj);
+		
 	}
   },
   created() {
     this.viewPhoto();	
   },
+  updated() {	  
+	window.eventBus.$off('cmdupdate', this.clickHandler);
+	window.eventBus.$on('cmdupdate', this.clickHandler);	
+  }
 };
 </script>

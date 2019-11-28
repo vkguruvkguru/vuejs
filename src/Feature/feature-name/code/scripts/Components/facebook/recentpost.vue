@@ -9,7 +9,7 @@
       <p>{{recentDataValue.body}}</p>
       </template>
       <hr>		
-	  <facebook-submitcmd></facebook-submitcmd>
+	  <facebook-submitcmd :cmd-data="cmdData"></facebook-submitcmd>
       <br><br>
       <facebook-viewcmd :cmd-data="cmdData" :user-data="userData"></facebook-viewcmd>
       
