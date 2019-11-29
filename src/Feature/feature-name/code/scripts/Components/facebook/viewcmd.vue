@@ -14,9 +14,6 @@
  </div>
 </template>
 <script>
-const clickHandler = function(clickCount) {
-  console.log(`Oh, that's nice. It's gotten ${clickCount} clicks! :)`)
-}
 export default {
   name: 'facebookViewcmd',
   data(){
