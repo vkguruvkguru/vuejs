@@ -1,8 +1,8 @@
 <template>
 	  <div class="input-group">
-		<input type="text" class="form-control" placeholder="Search Blog..">
+		<input type="text" class="form-control" placeholder="Search Blog.." v-model="searchtxt">
 		<span class="input-group-btn">
-		  <button class="btn btn-default" type="button">
+		  <button class="btn btn-default" type="button" @click="searchbutton()">
 			<span class="glyphicon glyphicon-search"></span>
 		  </button>
 		</span>
@@ -10,7 +10,18 @@
  </template>
 <script>
 export default {
-  name: 'facebookSearchblog'  
+  name: 'facebookSearchblog',
+  data(){
+	return{
+		searchtxt:''
+	}
+  },
+  methods: {
+	searchbutton(){
+		window.eventBus.$emit('searchdata', this.searchtxt);
+		this.searchtxt = ''
+	}
+  }
 };
 
 </script>

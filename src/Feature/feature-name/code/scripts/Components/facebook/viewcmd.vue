@@ -1,6 +1,6 @@
 <template>
   <div>	  
-      <p><span class="badge">2</span> Comments:</p><br>     
+      <p><span class="badge">{{cmdLastData.length}}</span> Comments:</p><br>     
       <div class="row" v-if="cmdData" v-for="(cmdDataValue,index) in cmdLastData">
         <div class="col-sm-2 text-center" v-for="viewImgDataValue in viewImgData" v-if="viewImgDataValue.id == cmdDataValue.id">
           <img :src="viewImgDataValue.thumbnailUrl" class="img-circle" height="65" width="65" alt="Avatar">

@@ -1,6 +1,18 @@
 <template>
-  <div class="col-sm-9"> 		
-	  <template v-if="recentDataValue" v-for="(recentDataValue,index) in recentLastData">
+  <div class="col-sm-9">
+	  <template v-if="search.length && searchtxtbox !=''" v-for="(recentDataValue,index) in search">
+	  <h4><small>RECENT POSTS</small></h4>
+      <hr>
+      <h2>{{recentDataValue.title}}</h2>
+      <h5><span class="glyphicon glyphicon-time"></span> <template v-for="userDataValue in userData" v-if="userDataValue.id == recentDataValue.userId">Post by {{userDataValue.name}},</template> Sep 27, 2015.</h5>
+      <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
+      <p>{{recentDataValue.body}}</p>
+      </template>
+	  <template v-else-if="!search.length && searchtxtbox !=''">
+	  <div>no data</div>
+	  </template>
+	  
+	  <template v-if="searchtxtbox == ''" v-for="(recentDataValue,index) in recentLastData">
 	  <h4><small>RECENT POSTS</small></h4>
       <hr>
       <h2>{{recentDataValue.title}}</h2>
@@ -17,7 +29,13 @@
 </template>
 <script>
 export default {
-  name: 'facebookRecentpost',  
+  name: 'facebookRecentpost',
+  data(){
+    return{
+		search:[],
+		searchtxtbox:''
+	}
+  },
   props:{
 	recentData: {
       type: Array,
@@ -37,11 +55,25 @@ export default {
 		let recentLastData = '';
 			if (this.recentData === null || this.recentData === undefined) {
 				return false;
-			}		
+			}
 		recentLastData = this.recentData.slice(0,3);	
-		//console.log(recentLastData);
 		return recentLastData;
 	}
+  },
+  methods:{
+	searchdata(txt){
+		this.searchtxtbox = txt
+		let newData = this.recentLastData.filter(item => {
+                if(item.body.toLowerCase().indexOf(txt) !== -1){
+                    return item;
+                }
+		});		
+		this.search = newData
+	}
+  },
+  updated() {	  
+	window.eventBus.$off('searchdata', this.searchdata);
+	window.eventBus.$on('searchdata', this.searchdata);	
   }
 };
 
