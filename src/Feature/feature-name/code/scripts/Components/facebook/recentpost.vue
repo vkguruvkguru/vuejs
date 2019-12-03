@@ -8,7 +8,7 @@
       <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
       <p>{{recentDataValue.body}}</p>
       </template>
-	  <template v-else-if="!search.length && searchtxtbox !=''">
+	  <template v-if="!search.length && searchtxtbox !=''">
 	  <div>no data</div>
 	  </template>
 	  
@@ -63,10 +63,16 @@ export default {
   methods:{
 	searchdata(txt){
 		this.searchtxtbox = txt
-		let newData = this.recentLastData.filter(item => {
-                if(item.body.toLowerCase().indexOf(txt) !== -1){
-                    return item;
-                }
+		let searchArray = txt.trim().split(' ');		
+		let newData = [];
+		this.recentLastData.filter(item => {	
+				searchArray.map(searchdata => {				
+					if(newData.includes(item) == false && 
+					  (item.body.toLowerCase().indexOf(searchdata) !== -1 
+					   || item.title.toLowerCase().indexOf(searchdata) !== -1)){	
+						newData.push(item);						
+					}
+				});							
 		});		
 		this.search = newData
 	}

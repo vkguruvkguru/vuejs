@@ -11,6 +11,7 @@
 <script>
 import fbSidenav from '../facebook/sidenav.vue'
 import fbRecentpost from '../facebook/recentpost.vue'
+import 'whatwg-fetch';
 export default {
   name: 'facebookHome',
   component: {

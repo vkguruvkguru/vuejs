@@ -1,6 +1,6 @@
 <template>
 	  <div class="input-group">
-		<input type="text" class="form-control" placeholder="Search Blog.." v-model="searchtxt">
+		<input type="text" class="form-control" placeholder="Search Blog.." v-model="searchtxt" @keyup.enter="searchbutton()">
 		<span class="input-group-btn">
 		  <button class="btn btn-default" type="button" @click="searchbutton()">
 			<span class="glyphicon glyphicon-search"></span>
