@@ -41,7 +41,7 @@
     "jest-localstorage-mock": "^2.4.0",
     "jest-serializer-vue": "^2.0.2",
     "sinon": "^7.4.1",
-    "vue": "^2.5.16",
+    "vue": "^3.0.0",
     "vue-jest": "^3.0.4",
     "vue-template-compiler": "^2.6.10"
   },
